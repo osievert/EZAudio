@@ -30,5 +30,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app records from the mic.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app uses the mic but not the camera.</string>
 </dict>
 </plist>

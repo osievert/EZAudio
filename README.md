@@ -2,6 +2,16 @@
 
 A simple, intuitive audio framework for iOS and OSX.
 
+## Fork notes
+
+This library was forked in order to make a few changes for my own personal needs (to understand
+how microphone audio capture is done on OSX). A few of these changes include:
+- update projects to the latest Xcode 12.1 settings
+- add a simple command line [Makefile](Makefile) to build EZAudio in a way that places the 
+  EZAudio framework in a directory the example programs expect
+- add hardened runtime support to an example, modify Info.plist, and add a bit
+  of permissions request / checking so that the app can use the microphone
+
 ## Deprecated
 
 EZAudio has recently been deprecated in favor of AudioKit. However, since some people are still forking and using EZAudio I've decided to restore the README as it was. [Check out the note below](#Deprecated).

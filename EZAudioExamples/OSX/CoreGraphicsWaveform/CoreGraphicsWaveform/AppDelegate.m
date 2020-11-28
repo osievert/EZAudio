@@ -24,6 +24,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "AppDelegate.h"
 
 @implementation AppDelegate
@@ -34,6 +36,41 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Request permission to access the camera and microphone.
+    switch ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio])
+    {
+        case AVAuthorizationStatusAuthorized:
+        {
+            // The user has previously granted access to the camera.
+            // [self setupCaptureSession];
+            NSLog(@"mic access previously granted");
+            break;
+        }
+        case AVAuthorizationStatusNotDetermined:
+        {
+            // The app hasn't yet asked the user for camera access.
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
+                if (granted) {
+                    // [self setupCaptureSession];
+                    NSLog(@"mic access previously requested and granted");
+                } else {
+                    NSLog(@"mic access previously requested and denied");
+                }
+            }];
+            break;
+        }
+        case AVAuthorizationStatusDenied:
+        {
+            // The user has previously denied access.
+            return;
+        }
+        case AVAuthorizationStatusRestricted:
+        {
+            // The user can't grant access due to restrictions.
+            return;
+        }
+    }
+
     //
     // Set plot's background color
     //
